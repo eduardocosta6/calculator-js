@@ -1,0 +1,158 @@
+:root {
+    --bgColor: #0f172a;
+    --cardColor: #111827;
+    --cardGlow: #1f2937;
+    --displayColor: #020617;
+    --textMain: #f8fafc;
+    --textMuted: #94a3b8;
+    --numberColor: #1e293b;
+    --numberHover: #334155;
+    --actionColor: #475569;
+    --actionHover: #64748b;
+    --operatorColor: #ea580c;
+    --operatorHover: #f97316;
+    --equalColor: #22c55e;
+    --equalHover: #16a34a;
+    --shadowMain: 0 18px 40px rgba(0, 0, 0, 0.45);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--textMain);
+}
+
+.appShell {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+}
+
+.calculatorCard {
+    width: min(100%, 380px);
+    background: linear-gradient(160deg, var(--cardColor), var(--cardGlow));
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 24px;
+    box-shadow: var(--shadowMain);
+    padding: 20px;
+}
+
+.calculatorTop {
+    margin-bottom: 16px;
+}
+
+.calculatorLabel {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--textMuted);
+    margin-bottom: 10px;
+}
+
+.displayPanel {
+    background: linear-gradient(165deg, #0b1224, var(--displayColor));
+    border-radius: 16px;
+    padding: 16px;
+    min-height: 96px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 6px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.historyText {
+    font-size: 0.95rem;
+    color: var(--textMuted);
+    text-align: right;
+    min-height: 1.2em;
+}
+
+.currentText {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+    font-weight: 700;
+    text-align: right;
+    line-height: 1.1;
+    word-break: break-all;
+}
+
+.buttonGrid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.buttonGrid button {
+    border: none;
+    border-radius: 14px;
+    padding: 16px 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--textMain);
+    cursor: pointer;
+    transition: transform 0.08s ease, filter 0.15s ease, background-color 0.15s ease;
+}
+
+.buttonGrid button:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.numberBtn {
+    background: var(--numberColor);
+}
+
+.numberBtn:hover {
+    background: var(--numberHover);
+}
+
+.actionBtn {
+    background: var(--actionColor);
+}
+
+.actionBtn:hover {
+    background: var(--actionHover);
+}
+
+.operatorBtn {
+    background: var(--operatorColor);
+}
+
+.operatorBtn:hover {
+    background: var(--operatorHover);
+}
+
+.equalBtn {
+    background: var(--equalColor);
+}
+
+.equalBtn:hover {
+    background: var(--equalHover);
+}
+
+.zeroBtn {
+    grid-column: span 2;
+}
+
+@media (max-width: 420px) {
+    .calculatorCard {
+        border-radius: 20px;
+        padding: 16px;
+    }
+
+    .buttonGrid {
+        gap: 8px;
+    }
+
+    .buttonGrid button {
+        border-radius: 12px;
+        padding-block: 14px;
+    }
+}

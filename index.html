@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="appShell">
+        <section class="calculatorCard" aria-label="Calculator">
+            <header class="calculatorTop">
+                <p class="calculatorLabel">Calculator</p>
+                <div class="displayPanel">
+                    <p class="historyText" aria-live="polite">0</p>
+                    <p class="currentText" aria-live="polite">0</p>
+                </div>
+            </header>
+
+            <div class="buttonGrid">
+                <button class="actionBtn clearBtn" type="button">AC</button>
+                <button class="actionBtn deleteBtn" type="button">DEL</button>
+                <button class="actionBtn percentBtn" type="button">%</button>
+                <button class="operatorBtn divideBtn" type="button">/</button>
+
+                <button class="numberBtn" type="button">7</button>
+                <button class="numberBtn" type="button">8</button>
+                <button class="numberBtn" type="button">9</button>
+                <button class="operatorBtn multiplyBtn" type="button">*</button>
+
+                <button class="numberBtn" type="button">4</button>
+                <button class="numberBtn" type="button">5</button>
+                <button class="numberBtn" type="button">6</button>
+                <button class="operatorBtn minusBtn" type="button">-</button>
+
+                <button class="numberBtn" type="button">1</button>
+                <button class="numberBtn" type="button">2</button>
+                <button class="numberBtn" type="button">3</button>
+                <button class="operatorBtn plusBtn" type="button">+</button>
+
+                <button class="numberBtn zeroBtn" type="button">0</button>
+                <button class="numberBtn dotBtn" type="button">.</button>
+                <button class="equalBtn" type="button">=</button>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
