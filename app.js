@@ -1,3 +1,7 @@
+let currentValue = "0";
+let previousValue = null;
+let operator = null;
+
 // Utility function to get DOM elements
 //Getting numbers
 const nr0 = document.querySelector('.numberBtn0');
@@ -26,34 +30,101 @@ const equalBtn = document.querySelector('.equalBtn');
 const historyText = document.querySelector('.historyText');
 const currentText = document.querySelector('.currentText');
 
+function updateDisplay() {
+    currentText.textContent = currentValue;
+}
+
+function appendDigit(digit) {
+    if (currentValue === "0") {
+        currentValue = digit;
+    } else {
+        currentValue += digit;
+    }
+    updateDisplay();
+}
+
+function chooseOperator(op) {
+    if (previousValue !== null && operator !== null) {
+        calculate();
+    }
+
+    previousValue = currentValue;
+    operator = op;
+    currentValue = "0";
+
+    historyText.textContent = `${previousValue} ${operator}`;
+    updateDisplay();
+}
+
+function calculate() {
+    if (previousValue === null || operator === null) return;
+
+    const prev = parseFloat(previousValue);
+    const current = parseFloat(currentValue);
+
+    let result;
+
+    if (operator === '+') {
+        result = prev + current;
+    } else if (operator === '-') {
+        result = prev - current;
+    } else if (operator === '*') {
+        result = prev * current;
+    } else if (operator === '/') {
+        result = prev / current;
+    }
+
+    currentValue = result.toString();
+    previousValue = null;
+    operator = null;
+
+    historyText.textContent = "";
+    updateDisplay();
+}
+
+function handlePercent() {
+    const value = parseFloat(currentValue);
+
+    if (isNaN(value)) return;
+
+    currentValue = (value / 100).toString();
+    updateDisplay();
+}
+
+function clearAll() {
+    currentValue = "0";
+    previousValue = null;
+    operator = null;
+    historyText.textContent = "";
+    updateDisplay();
+}
+
+function delLast() {
+    currentValue = currentValue.slice(0, -1);
+
+    if (currentValue === "") {
+        currentValue = "0";
+    }
+
+    updateDisplay();
+}
+
 // values and even clickers
-nr0.addEventListener('click', function () {
-    currentText.texContent = nr0.textContent;
-});
-nr1.addEventListener('click', function () {
-    currentText.texContent = nr1.textContent;
-});
-nr2.addEventListener('click', function () {
-    currentText.texContent = nr2.textContent;
-});
-nr3.addEventListener('click', function () {
-    currentText.texContent = nr3.textContent;
-});
-nr4.addEventListener('click', function () {
-    currentText.texContent = nr4.textContent;
-});
-nr5.addEventListener('click', function () {
-    currentText.texContent = nr5.textContent;
-});
-nr6.addEventListener('click', function () {
-    currentText.texContent = nr6.textContent;
-});
-nr7.addEventListener('click', function () {
-    currentText.texContent = nr7.textContent;
-});
-nr8.addEventListener('click', function () {
-    currentText.texContent = nr8.textContent;
-});
-nr9.addEventListener('click', function () {
-    currentText.texContent = nr9.textContent;
-});
+nr0.addEventListener('click', () => appendDigit(nr0.textContent));
+nr1.addEventListener('click', () => appendDigit(nr1.textContent));
+nr2.addEventListener('click', () => appendDigit(nr2.textContent));
+nr3.addEventListener('click', () => appendDigit(nr3.textContent));
+nr4.addEventListener('click', () => appendDigit(nr4.textContent));
+nr5.addEventListener('click', () => appendDigit(nr5.textContent));
+nr6.addEventListener('click', () => appendDigit(nr6.textContent));
+nr7.addEventListener('click', () => appendDigit(nr7.textContent));
+nr8.addEventListener('click', () => appendDigit(nr8.textContent));
+nr9.addEventListener('click', () => appendDigit(nr9.textContent));
+plusBtn.addEventListener("click", () => chooseOperator("+"));
+minusBtn.addEventListener("click", () => chooseOperator("-"));
+multiplyBtn.addEventListener("click", () => chooseOperator("*"));
+divideBtn.addEventListener("click", () => chooseOperator("/"));
+equalBtn.addEventListener("click", calculate);
+clearBtn.addEventListener("click", clearAll);
+deleteBtn.addEventListener("click", delLast);
+percentBtn.addEventListener("click", handlePercent);
